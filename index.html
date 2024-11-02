@@ -1,0 +1,91 @@
+<html lang="en"><head></head><body>!DOCTYPE html&gt;
+
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Website Rekomendasi Aroma Diffuser</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background-color: #f9f9f9;
+      color: #333;
+      margin: 0;
+      padding: 20px;
+    }
+    button {
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  </style>
+
+
+  <h1>Temukan Aroma Diffuser yang Tepat untuk Anda</h1>
+  <button onclick="startQuestionnaire()">Mulai Kuesioner</button>
+
+  <div id="questionnaire" style="display:none;">
+    <h2>Kuesioner Aroma</h2>
+    <form id="kuesionerForm">
+      <p>Pilih suasana hati Anda:</p>
+      <label><input type="radio" name="mood" value="relax"> Relaksasi</label><br>
+      <label><input type="radio" name="mood" value="energetic"> Energi</label><br>
+      <label><input type="radio" name="mood" value="focus"> Fokus</label><br>
+      <label><input type="radio" name="mood" value="stressRelief"> Mengurangi Stres</label><br>
+      <button type="button" onclick="submitForm()">Dapatkan Rekomendasi</button>
+    </form>
+  </div>
+
+  <div id="recommendation" style="display:none;">
+    <h2>Rekomendasi Aroma Anda</h2>
+    <p id="recommendationText"></p>
+    <button onclick="resetForm()">Kembali ke Halaman Utama</button>
+  </div>
+
+  <script>
+    function startQuestionnaire() {
+      document.getElementById('questionnaire').style.display = 'block';
+      document.getElementById('recommendation').style.display = 'none';
+    }
+
+    function submitForm() {
+      const form = document.getElementById('kuesionerForm');
+      const formData = new FormData(form);
+      const mood = formData.get('mood');
+
+      let recommendation = '';
+
+      switch (mood) {
+        case 'relax':
+          recommendation = 'Aroma yang cocok untuk Anda adalah Lavender.';
+          break;
+        case 'energetic':
+          recommendation = 'Aroma yang cocok untuk Anda adalah Peppermint.';
+          break;
+        case 'focus':
+          recommendation = 'Aroma yang cocok untuk Anda adalah Rosemary.';
+          break;
+        case 'stressRelief':
+          recommendation = 'Aroma yang cocok untuk Anda adalah Chamomile.';
+          break;
+        default:
+          alert('Silakan pilih suasana hati Anda!');
+          return;
+      }
+
+      document.getElementById('recommendationText').innerText = recommendation;
+      document.getElementById('recommendation').style.display = 'block';
+      document.getElementById('questionnaire').style.display = 'none';
+    }
+
+    function resetForm() {
+      document.getElementById('kuesionerForm').reset();
+      document.getElementById('recommendation').style.display = 'none';
+      document.getElementById('questionnaire').style.display = 'none';
+    }
+  </script>
+
+</body></html>
